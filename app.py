@@ -5,7 +5,7 @@ import openai
 app = Flask(__name__)
 
 # Set your OpenAI API key
-openai.api_key = "your-api-key-here"  # Replace this
+openai.api_key = "https://platform.openai.com/account/api-keys"  # Replace this
 
 @app.route("/")
 def index():
@@ -32,4 +32,8 @@ def ask():
         return jsonify({"answer": f"Error: {str(e)}"})
         
 if __name__ == "__main__":
-    app.run(debug=True)
+    import os
+
+port = int(os.environ.get("PORT", 5000))
+app.run(host="0.0.0.0", port=port)
+
